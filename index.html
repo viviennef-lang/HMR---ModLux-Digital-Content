@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What's Behind HMR's Immersive Experiences</title>
+  <link href="https://fonts.googleapis.com/css2?family=GFS+Didot&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: 'GFS Didot', Georgia, serif;
+      line-height: 1.5;
+    }
+
+    .article-wrap {
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 48px 24px 72px;
+    }
+
+    .title-block {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .article-title {
+      font-size: clamp(18pt, 4vw, 20pt);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    .article-subtitle {
+      font-size: clamp(12pt, 3vw, 14pt);
+      font-style: italic;
+      font-weight: 400;
+      margin-bottom: 10px;
+    }
+
+    .article-byline {
+      font-size: 11pt;
+      font-weight: 400;
+    }
+
+    /* Images — clickable */
+    .article-image {
+      width: 100%;
+      margin: 20px 0;
+      display: block;
+    }
+
+    .article-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      cursor: zoom-in;
+      transition: opacity 0.2s;
+    }
+
+    .article-image img:hover {
+      opacity: 0.92;
+    }
+
+    .body-text {
+      font-size: clamp(10pt, 2.5vw, 11pt);
+      line-height: 1.6;
+      margin-bottom: 16px;
+      color: #000000;
+    }
+
+    .contact-block {
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    .contact-logo {
+      width: 140px;
+      height: auto;
+      margin: 0 auto 16px;
+      display: block;
+    }
+
+    .contact-block p {
+      font-size: clamp(9pt, 2.5vw, 11pt);
+      font-weight: 400;
+      margin-bottom: 6px;
+      line-height: 1.6;
+    }
+
+    .contact-block a {
+      color: #1155cc;
+      text-decoration: underline;
+    }
+
+    .social-links {
+      margin-top: 6px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 4px 2px;
+    }
+
+    .social-links a {
+      color: #1155cc;
+      text-decoration: underline;
+      font-size: clamp(9pt, 2.5vw, 11pt);
+      white-space: nowrap;
+    }
+
+    .social-links span {
+      color: #000;
+    }
+
+    /* ── Lightbox ── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.88);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      cursor: zoom-out;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 100%;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 2px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+      cursor: default;
+    }
+
+    .lightbox-close {
+      position: fixed;
+      top: 16px;
+      right: 20px;
+      color: #ffffff;
+      font-size: 36px;
+      font-family: Arial, sans-serif;
+      font-weight: 300;
+      line-height: 1;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px 10px;
+      z-index: 1001;
+      opacity: 0.85;
+    }
+
+    .lightbox-close:hover {
+      opacity: 1;
+    }
+
+    @media (max-width: 480px) {
+      .article-wrap {
+        padding: 32px 20px 56px;
+      }
+
+      .contact-logo {
+        width: 110px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="article-wrap">
+
+    <div class="article-image">
+      <img src="assets/image4.jpg" alt="Elegant event tablescape designed by HMR Designs" onclick="openLightbox(this)">
+    </div>
+
+    <div class="title-block">
+      <h1 class="article-title">What's Behind HMR's Immersive Experiences</h1>
+      <p class="article-subtitle">Chicago's full-service luxury event design and production studio</p>
+      <p class="article-byline">By Vivienne Falls</p>
+    </div>
+
+    <p class="body-text">For over 40 years, HMR Designs has been creating environments that change not just how an event looks, but how it feels from the moment guests walk in. Based in Chicago, the studio has built a world-renowned reputation by bringing ambitious concepts to life at weddings, galas, corporate events, mitzvahs, and private celebrations across the Midwest and around the world — always with the belief that no two should ever be the same.</p>
+
+    <p class="body-text">The creative process begins with listening. Some clients arrive with a clear vision; others simply know the mood they want to evoke. Either way, HMR translates those ideas into a fully realized environment, guiding the project from concept through production. By the time an event comes to life, every detail has been considered from every angle.</p>
+
+    <div class="article-image">
+      <img src="assets/image5.jpg" alt="Warm candlelit reception setting with florals and table lamps" onclick="openLightbox(this)">
+    </div>
+
+    <p class="body-text">HMR's designers draw from architecture, fashion, art, travel, and a wide range of cultural influences. They filter those references through each client's aesthetic to create something that couldn't exist for anyone else. The studio isn't chasing trends. It's building experiences shaped around the people they're designed for.</p>
+
+    <p class="body-text">That approach is facilitated by the specialized range of disciplines working collaboratively under one roof. HMR brings together designers, fabricators, floral artists, lighting specialists, and production teams from the very outset. Ideas are developed, built and managed internally, rather than being entrusted to subcontractors. This meticulous control ensures that every element comes together seamlessly on the most critical day, creating a beautifully harmonious environment where each component has rightfully earned its place.</p>
+
+    <div class="article-image">
+      <img src="assets/image2.jpg" alt="Soft blue linen dining setting with candles and garden-fresh florals" onclick="openLightbox(this)">
+    </div>
+
+    <p class="body-text">Florals have always been at the heart of HMR's work. With decades of botanical expertise across the team, flowers establish scale, movement, and emotion within a space — whether through intimate tabletop arrangements, sculptural installations, or sweeping compositions that transform an entire room. Often, they're the starting point for everything that follows.</p>
+
+    <div class="article-image">
+      <img src="assets/image1.jpg" alt="Dramatic candlelit reception with dark linens and white floral centerpieces" onclick="openLightbox(this)">
+    </div>
+
+    <p class="body-text">From there, statement lighting, custom-built structures, specialty furnishings, graphics, and unexpected materials work alongside florals to shape the full experience. Every element is considered in relation to the next, creating environments that feel layered, immersive, and unmistakably personal. It's an approach that has made HMR a premier studio for one-of-a-kind event design, from a Chicago ballroom to a destination beach wedding. The setting changes. The standard doesn't.</p>
+
+    <div class="article-image">
+      <img src="assets/image3.jpg" alt="Grand ballroom with cascading floral balcony and chandelier lighting" onclick="openLightbox(this)">
+    </div>
+
+    <div class="contact-block">
+      <img class="contact-logo" src="assets/HMRLOGO.webp" alt="HMR Designs">
+      <p>4200 W Bryn Mawr Ave, Chicago, IL 60646</p>
+      <p>(773) 782-0800 &middot; <a href="mailto:concierge@hmrdesigns.com">concierge@hmrdesigns.com</a> &middot; <a href="http://hmrdesigns.com">hmrdesigns.com</a></p>
+      <div class="social-links">
+        <a href="https://www.instagram.com/hmrdesigns/">Instagram</a>
+        <span> &middot; </span>
+        <a href="https://www.tiktok.com/@hmrdesigns">TikTok</a>
+        <span> &middot; </span>
+        <a href="https://www.linkedin.com/company/hmr-designs">LinkedIn</a>
+        <span> &middot; </span>
+        <a href="https://www.facebook.com/hmrdesignschicago/">Facebook</a>
+        <span> &middot; </span>
+        <a href="https://www.pinterest.com/hmrdesigns/">Pinterest</a>
+        <span> &middot; </span>
+        <a href="https://www.partyslate.com/vendors/hmr-designs">PartySlate</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()">
+  </div>
+
+  <script>
+    function openLightbox(imgEl) {
+      document.getElementById('lightbox-img').src = imgEl.src;
+      document.getElementById('lightbox-img').alt = imgEl.alt;
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Close with Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+
+</body>
+</html>
